@@ -41,6 +41,15 @@ class FeedBackForm extends StatelessWidget {
                 hintText: 'Describe Your Experience',
               ),
             ),
+            ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all(Color(0xFF3F51B5))),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Submit'),
+            )
           ],
         ),
       ),
