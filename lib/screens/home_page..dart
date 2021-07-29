@@ -4,6 +4,8 @@ import 'package:missioned_forum/components/carousel.dart';
 import 'package:missioned_forum/components/drawerItem.dart';
 import 'package:missioned_forum/components/post_item.dart';
 import 'package:missioned_forum/components/feedback.dart';
+import 'package:missioned_forum/components/my_drawer.dart';
+import 'package:missioned_forum/components/my_app_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,44 +15,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  void _openEndDrawer() {
-    _scaffoldKey.currentState!.openEndDrawer();
-  }
-
-  void _closeEndDrawer() {
-    Navigator.of(context).pop();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff444753),
-        bottomOpacity: 10,
-        elevation: 10,
-        leading: CircleAvatar(
-          child: Image.asset('assets/images/MIssionEdLogo.jpg'),
-          backgroundColor: Colors.black45,
-        ),
-        title: Text(
-          'MissionEd Forum',
-          style: TextStyle(color: Colors.deepOrangeAccent),
-        ),
-        actions: [
-          Builder(
-            builder: (context) =>
-                IconButton(icon: Icon(Icons.notifications), onPressed: () {}),
-          ),
-          Builder(
-            builder: (context) => IconButton(
-              icon: Icon(Icons.list),
-              onPressed: () => Scaffold.of(context).openEndDrawer(),
-            ),
-          ),
-        ],
-      ),
+      appBar: MyAppBar(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showDialog(
@@ -63,40 +31,7 @@ class _HomePageState extends State<HomePage> {
         child: Icon(Icons.feedback),
         backgroundColor: Color(0xff3f51b5),
       ),
-      endDrawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            SizedBox(
-              height: 50,
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10, top: 15),
-                child: IconButton(
-                  icon: Icon(Icons.chevron_right),
-                  onPressed: _closeEndDrawer,
-                ),
-              ),
-            ),
-            Divider(
-              height: 2,
-              thickness: 2,
-            ),
-            DrawerItem(
-              itemIcon: Icons.home,
-              itemText: 'Home',
-              itemRoute: '/homepage',
-            ),
-            DrawerItem(
-              itemIcon: Icons.people_alt,
-              itemText: 'Network',
-              itemRoute: '/homepage',
-            )
-          ],
-        ),
-      ),
+      endDrawer: MyDrawer(),
       body: SafeArea(
         child: Container(
           color: Colors.lightBlue.shade50,
