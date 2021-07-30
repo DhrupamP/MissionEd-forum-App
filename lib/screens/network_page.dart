@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:missioned_forum/components/my_app_bar.dart';
 import 'package:missioned_forum/components/my_drawer.dart';
+import 'package:missioned_forum/components/recommended.dart';
 
 var btnindex = 0;
 bool pressed = false;
@@ -13,21 +14,67 @@ class NetworkPage extends StatefulWidget {
 }
 
 class _NetworkPageState extends State<NetworkPage> {
-  bool pressed = false;
+  List<bool> isSelected = [];
 
   List<Widget> bodyElements = [
-    Text('No One is Followinf you!'),
+    Text('No One is Following you!'),
     Text('your are not following anyone!'),
     Container(
-      color: Colors.red,
-      height: 100,
-      width: double.infinity,
+      margin: EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        gradient: LinearGradient(
+          begin: Alignment(0.9, 0.0),
+          end: Alignment.topLeft,
+          colors: [Color(0xFF7A7A9B), Color(0x77858592)],
+        ),
+      ),
+      child: Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: CircleAvatar(
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(55),
+                  child: Image.asset('assets/images/MIssionEdLogo.jpg')),
+              radius: 55,
+            ),
+          ),
+          Container(
+            height: 150,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  'email.email.com',
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  'NAME',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
     )
   ];
+  @override
+  void initState() {
+    // TODO: implement initState
+    isSelected = [true, false, false];
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFF1F4FF),
       appBar: MyAppBar(),
       endDrawer: MyDrawer(),
       body: Column(
@@ -37,73 +84,45 @@ class _NetworkPageState extends State<NetworkPage> {
             child: Align(
               alignment: Alignment.topCenter,
               child: Material(
+                borderRadius: BorderRadius.circular(10),
+                elevation: 10,
+                child: ToggleButtons(
+                  children: <Widget>[
+                    // first toggle button
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Followers',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
+                    // second toggle button
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Following',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    // third toggle button
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Recommended',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
+                  ],
+                  onPressed: (int index) {
+                    setState(() {
+                      for (int i = 0; i < isSelected.length; i++) {
+                        isSelected[i] = i == index;
+                        btnindex = index;
+                      }
+                    });
+                  },
+                  isSelected: isSelected,
+                  selectedColor: Colors.white,
+                  fillColor: Color(0xff444753),
                   borderRadius: BorderRadius.circular(10),
-                  elevation: 10,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                  pressed ? Colors.black : Colors.black)),
-                          onPressed: () {
-                            setState(() {
-                              pressed = !pressed;
-                              btnindex = 0;
-                            });
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Followers',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                  pressed ? Colors.black : Colors.black)),
-                          onPressed: () {
-                            setState(() {
-                              pressed = !pressed;
-                              btnindex = 1;
-                            });
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Following',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                  pressed ? Colors.black : Colors.black)),
-                          onPressed: () {
-                            setState(() {
-                              pressed = !pressed;
-                              btnindex = 2;
-                            });
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Recommended',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  )),
+                ),
+              ),
             ),
           ),
           Container(
@@ -114,3 +133,62 @@ class _NetworkPageState extends State<NetworkPage> {
     );
   }
 }
+// Row(
+// mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+// children: [
+// ElevatedButton(
+// style: ButtonStyle(
+// backgroundColor: MaterialStateProperty.all(
+// pressed ? Colors.black : Colors.black)),
+// onPressed: () {
+// setState(() {
+// pressed = !pressed;
+// btnindex = 0;
+// });
+// },
+// child: Text(
+// 'Followers',
+// style: TextStyle(fontWeight: FontWeight.bold),
+// ),
+// ),
+// Container(
+// child: ElevatedButton(
+// style: ButtonStyle(
+// backgroundColor:
+// MaterialStateProperty.all(Colors.black)),
+// onPressed: () {
+// setState(() {
+// pressed = !pressed;
+// btnindex = 1;
+// });
+// },
+// child: Container(
+// padding: const EdgeInsets.all(8.0),
+// child: Text(
+// 'Following',
+// style: TextStyle(fontWeight: FontWeight.bold),
+// ),
+// ),
+// ),
+// ),
+// ElevatedButton(
+// style: ButtonStyle(
+// backgroundColor:
+// MaterialStateProperty.all(Colors.black),
+// ),
+// onPressed: () {
+// setState(() {
+// pressed = !pressed;
+// btnindex = 2;
+// });
+// },
+// child: Container(
+// padding: const EdgeInsets.all(8.0),
+// child: Text(
+// 'Recommended',
+// style: TextStyle(fontWeight: FontWeight.bold),
+// ),
+// ),
+// ),
+// ],
+// )

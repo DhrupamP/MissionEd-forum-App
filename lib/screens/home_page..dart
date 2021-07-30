@@ -18,6 +18,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFF1F4FF),
       appBar: MyAppBar(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -34,7 +35,6 @@ class _HomePageState extends State<HomePage> {
       endDrawer: MyDrawer(),
       body: SafeArea(
         child: Container(
-          color: Colors.lightBlue.shade50,
           height: double.infinity,
           child: ListView(
             children: [
