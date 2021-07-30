@@ -51,7 +51,7 @@ class _MyDrawerState extends State<MyDrawer> {
             itemIcon: Icons.people_alt,
             itemText: 'Network',
             itemRoute: '/networkpage',
-          )
+          ),
         ],
       ),
     );

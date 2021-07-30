@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:missioned_forum/components/my_app_bar.dart';
 import 'package:missioned_forum/components/my_drawer.dart';
-import 'package:missioned_forum/components/recommended.dart';
+import 'package:missioned_forum/components/recommended_card.dart';
 
 var btnindex = 0;
 bool pressed = false;
@@ -18,56 +18,50 @@ class _NetworkPageState extends State<NetworkPage> {
 
   List<Widget> bodyElements = [
     Text('No One is Following you!'),
-    Text('your are not following anyone!'),
     Container(
-      margin: EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        gradient: LinearGradient(
-          begin: Alignment(0.9, 0.0),
-          end: Alignment.topLeft,
-          colors: [Color(0xFF7A7A9B), Color(0x77858592)],
-        ),
-      ),
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: CircleAvatar(
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(55),
-                  child: Image.asset('assets/images/MIssionEdLogo.jpg')),
-              radius: 55,
-            ),
-          ),
-          Container(
-            height: 150,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  'email.email.com',
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  'NAME',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
+        child: Text(
+      'your are not following anyone!',
+    )),
+    Column(
+      children: [
+        RecommenderCard(name: 'dhrupam', email: 'dhrupam#sanon'),
+        RecommenderCard(name: 'dhrupam', email: 'dhrupam#sanon'),
+        RecommenderCard(name: 'dhrupam', email: 'dhrupam#sanon'),
+        RecommenderCard(name: 'dhrupam', email: 'dhrupam#sanon'),
+        RecommenderCard(name: 'dhrupam', email: 'dhrupam#sanon'),
+        RecommenderCard(name: 'dhrupam', email: 'dhrupam#sanon'),
+      ],
     )
+
+    // Container(
+    //   margin: EdgeInsets.all(20),
+    //   decoration: BoxDecoration(
+    //     borderRadius: BorderRadius.circular(20),
+    //     gradient: LinearGradient(
+    //       begin: Alignment(0.9, 0.0),
+    //       end: Alignment.topLeft,
+    //       colors: [Color(0xFF7A7A9B), Color(0x77858592)],
+    //     ),
+    //   ),
+    //   child: Column(
+    //     children: [
+    //       RecommenderCard(
+    //         email: 'dhrupam@patel.com',
+    //         name: 'Dhrupam Patel',
+    //       ),
+    //       RecommenderCard(
+    //         email: 'dhrupam@patel.com',
+    //         name: 'Dhrupam Patel',
+    //       ),
+    //     ],
+    //   ),
+    // )
   ];
   @override
   void initState() {
     // TODO: implement initState
     isSelected = [true, false, false];
+    btnindex = 0;
     super.initState();
   }
 
@@ -77,7 +71,7 @@ class _NetworkPageState extends State<NetworkPage> {
       backgroundColor: Color(0xFFF1F4FF),
       appBar: MyAppBar(),
       endDrawer: MyDrawer(),
-      body: Column(
+      body: ListView(
         children: [
           Container(
             padding: EdgeInsets.symmetric(vertical: 30, horizontal: 15),
@@ -125,14 +119,17 @@ class _NetworkPageState extends State<NetworkPage> {
               ),
             ),
           ),
-          Container(
-            child: bodyElements.elementAt(btnindex),
+          Center(
+            child: Container(
+              child: bodyElements.elementAt(btnindex),
+            ),
           )
         ],
       ),
     );
   }
 }
+
 // Row(
 // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 // children: [
