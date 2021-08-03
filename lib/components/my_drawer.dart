@@ -52,6 +52,15 @@ class _MyDrawerState extends State<MyDrawer> {
             itemText: 'Network',
             itemRoute: '/networkpage',
           ),
+          DrawerItem(
+              itemIcon: Icons.message,
+              itemText: 'Messages',
+              itemRoute: '/messagespage'),
+          DrawerItem(
+            itemIcon: Icons.portrait_outlined,
+            itemRoute: '/profilepage',
+            itemText: 'Profile',
+          )
         ],
       ),
     );

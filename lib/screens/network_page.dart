@@ -24,12 +24,12 @@ class _NetworkPageState extends State<NetworkPage> {
     )),
     Column(
       children: [
+        RecommenderCard(name: 'dhrupam', email: 'hello#sanon'),
         RecommenderCard(name: 'dhrupam', email: 'dhrupam#sanon'),
         RecommenderCard(name: 'dhrupam', email: 'dhrupam#sanon'),
         RecommenderCard(name: 'dhrupam', email: 'dhrupam#sanon'),
         RecommenderCard(name: 'dhrupam', email: 'dhrupam#sanon'),
-        RecommenderCard(name: 'dhrupam', email: 'dhrupam#sanon'),
-        RecommenderCard(name: 'dhrupam', email: 'dhrupam#sanon'),
+        RecommenderCard(name: 'dhrupam', email: 'hello'),
       ],
     )
 
